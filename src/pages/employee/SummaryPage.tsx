@@ -4,10 +4,19 @@ import api from "@/api/axiosInstance";
 import { Filter, Search, Clock, FileText, CalendarDays, Loader2 } from "lucide-react";
 
 export default function SummaryPage() {
-  const today = new Date().toISOString().split("T")[0];
-  const firstDayOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1)
-    .toISOString()
-    .split("T")[0];
+  // Helper function to get date in Jakarta timezone (WIB/UTC+7)
+  const getJakartaDateString = (date = new Date()) => {
+    const jakartaDate = new Date(date.toLocaleString("en-US", { timeZone: "Asia/Jakarta" }));
+    const year = jakartaDate.getFullYear();
+    const month = String(jakartaDate.getMonth() + 1).padStart(2, '0');
+    const day = String(jakartaDate.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  const today = getJakartaDateString();
+  const firstDayOfMonth = getJakartaDateString(
+    new Date(new Date().getFullYear(), new Date().getMonth(), 1)
+  );
 
   const [startDate, setStartDate] = useState(firstDayOfMonth);
   const [endDate, setEndDate] = useState(today);
