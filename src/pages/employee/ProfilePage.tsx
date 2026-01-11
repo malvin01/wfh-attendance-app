@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,8 +24,6 @@ const passwordSchema = z.object({
 export default function ProfilePage() {
   const queryClient = useQueryClient();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [updateSuccess, setUpdateSuccess] = useState(false);
-  const [passwordSuccess, setPasswordSuccess] = useState(false);
 
   const { data: res, isLoading } = useQuery({
     queryKey: ["profile"],
@@ -60,8 +58,6 @@ export default function ProfilePage() {
   const updatePhoneMutation = useMutation({
     mutationFn: (values: z.infer<typeof phoneSchema>) => api.patch("/profile", values),
     onSuccess: () => {
-      setUpdateSuccess(true);
-      setTimeout(() => setUpdateSuccess(false), 3000);
       queryClient.invalidateQueries({ queryKey: ["profile"] });
       toast.success("Kontak diperbarui");
     },
@@ -74,9 +70,7 @@ export default function ProfilePage() {
     mutationFn: (values: z.infer<typeof passwordSchema>) => 
       api.post("/profile/change-password", values),
     onSuccess: () => {
-      setPasswordSuccess(true);
       passwordForm.reset();
-      setTimeout(() => setPasswordSuccess(false), 3000);
       toast.success("Password diperbarui");
     },
     onError: (err: any) => {

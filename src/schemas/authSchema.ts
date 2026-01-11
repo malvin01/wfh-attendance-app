@@ -1,5 +1,4 @@
 import * as z from "zod";
-import { de } from "zod/v4/locales";
 
 export const loginSchema = z.object({
   email: z
