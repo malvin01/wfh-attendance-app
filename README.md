@@ -119,6 +119,33 @@ npm run dev
 
 Aplikasi akan berjalan di [http://localhost:5173](http://localhost:5173)
 
+## 👤 Demo Accounts
+
+### Employee Account
+Untuk akses fitur employee (Clock In/Out, Profile, Attendance History):
+
+- **Email:** `john.doe@dexagroup.com`
+- **Password:** `password123`
+
+Fitur yang tersedia:
+- ✅ Clock In / Clock Out dengan geolocation
+- ✅ Melihat riwayat absensi
+- ✅ Update profile
+
+### Admin Account
+Untuk akses full admin dashboard:
+
+- **Email:** `admin@dexagroup.com`
+- **Password:** `password123`
+
+Fitur yang tersedia:
+- ✅ Dashboard dengan statistik absensi
+- ✅ Manajemen karyawan (CRUD)
+- ✅ Monitoring absen semua karyawan
+- ✅ Real-time notifications
+
+> **📌 Note:** Pastikan backend API sudah berjalan sebelum mencoba login.
+
 ### Build for Production
 ```bash
 npm run build
