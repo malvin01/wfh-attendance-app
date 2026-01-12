@@ -51,7 +51,7 @@ api.interceptors.response.use(
           const fcmToken = localStorage.getItem('fcmToken');
           if (fcmToken) {
              await axios.delete(
-              `${import.meta.env.VITE_API_BASE_URL}/api/employees/token/${encodeURIComponent(fcmToken)}`, 
+              `${import.meta.env.VITE_API_BASE_URL}/api/notifications/token/${encodeURIComponent(fcmToken)}`, 
               { withCredentials: true }
             );
           }

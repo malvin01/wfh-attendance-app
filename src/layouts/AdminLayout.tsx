@@ -116,7 +116,7 @@ export default function AdminLayout() {
 
       const fcmToken = localStorage.getItem('fcmToken');
       if (fcmToken) {
-         await api.delete(`/employees/token/${encodeURIComponent(fcmToken)}`);
+         await api.delete(`/notifications/token/${encodeURIComponent(fcmToken)}`);
       }
 
       toast.success("Berhasil keluar");
