@@ -49,10 +49,15 @@ api.interceptors.response.use(
       } catch (refreshError) {
         try {
           const fcmToken = localStorage.getItem('fcmToken');
+          const accessToken = localStorage.getItem('token'); 
           if (fcmToken) {
              await axios.delete(
               `${import.meta.env.VITE_API_BASE_URL}/api/notifications/token/${encodeURIComponent(fcmToken)}`, 
-              { withCredentials: true }
+              { withCredentials: true,
+                headers: {
+                  Authorization: `Bearer ${accessToken}` 
+              }
+               }
             );
           }
 
